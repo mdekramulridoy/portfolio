@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { useForm, ValidationError } from '@formspree/react';
-import { Toaster, toast } from 'react-hot-toast';  // Import React Hot Toast
+import { useForm, ValidationError } from "@formspree/react";
+import { Toaster, toast } from "react-hot-toast";
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +12,7 @@ const Contact = () => {
     message: "",
   });
 
-  const [state, handleSubmit] = useForm("xjkkpoqa");  // Formspree form ID
+  const [state, handleSubmit] = useForm("xjkkpoqa");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,32 +20,29 @@ const Contact = () => {
   };
 
   const handleFormSubmit = (e) => {
-    // Prevent default form submission
     e.preventDefault();
-
-    // Submit the form using Formspree
     handleSubmit(e);
-
-    // If submission is successful, show toast
+  
     if (state.succeeded) {
-      toast.success("Thanks for your message!", {
-        duration: 4000,  // Duration of toast in milliseconds
+      Swal.fire({
+        title: "Success!",
+        text: "Your message has been sent successfully.",
+        icon: "success",
+        confirmButtonColor: "#15A6FF",
       });
-
-      // Clear form fields after submission
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
+  
+      setFormData({ name: "", email: "", message: "" });
     }
   };
+  
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between px-6 my-10 rounded-lg py-10 bg-[#c1e8ff64] md:gap-24 lg:p-20 md:p-10">
-      {/* Left Side: Message Form */}
-      <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Send a Message</h2>
+    <div className="flex flex-col lg:flex-row items-center justify-between px-6 my-16 lg:my-24 py-10 bg-gradient-to-r from-[#c1e8ff] to-[#a6ddff] rounded-2xl shadow-lg gap-10">
+      {/* Left Side: Contact Form */}
+      <div className="w-full lg:w-1/2 p-6 lg:p-10 bg-white rounded-lg shadow-md">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">Get in Touch</h2>
+        <p className="text-gray-600 mb-6">Let's discuss how I can help you! Fill out the form and I'll get back to you soon.</p>
+
         <form onSubmit={handleFormSubmit} className="space-y-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -56,7 +56,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="Your name"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all"
             />
           </div>
           <div>
@@ -71,7 +71,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="Your email"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all"
             />
             <ValidationError prefix="Email" field="email" errors={state.errors} />
           </div>
@@ -86,7 +86,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="Write your message"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all"
               rows="4"
             ></textarea>
             <ValidationError prefix="Message" field="message" errors={state.errors} />
@@ -94,47 +94,39 @@ const Contact = () => {
           <button
             type="submit"
             disabled={state.submitting}
-            className="w-full bg-[#15A6FF] text-white font-bold py-2 rounded-lg hover:bg-blue-500 transition-colors"
+            className="w-full bg-[#15A6FF] text-white font-bold py-3 rounded-lg hover:bg-blue-500 transition-all"
           >
-            Send
+            Send Message
           </button>
         </form>
       </div>
 
       {/* Right Side: Contact Details */}
-      <div className="w-full lg:w-1/2 md:right-0">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Details</h2>
-        <ul className="space-y-4">
-          <li>
-            <p className="text-lg">
-              <strong>Location:</strong> Dhaka, Bangladesh
-            </p>
-          </li>
-          <li>
-            <p className="text-lg">
-              <strong>Email:</strong>{" "}
-              <a
-                href="mailto:ekramul.hoque.ridoy@gmail.com"
-                className="text-blue-500 underline hover:text-blue-700"
-              >
-                ekramul.hoque.ridoy@gmail.com
-              </a>
-            </p>
-          </li>
-          <li>
-            <p className="text-lg">
-              <strong>Mobile:</strong> +8801792243520
-            </p>
-          </li>
-          <li>
-            <p className="text-lg">
-              <strong>WhatsApp:</strong> +8801521323556
-            </p>
-          </li>
-        </ul>
+      <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left mt-10 lg:mt-0">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">Contact Information</h2>
+        <p className="text-gray-600 mb-6">You can also reach out via email, phone, or social media.</p>
+
+        <div className="space-y-4">
+          <div className="flex items-center space-x-4">
+            <FaMapMarkerAlt className="text-[#15A6FF] text-xl" />
+            <p className="text-lg">Dhaka, Bangladesh</p>
+          </div>
+          <div className="flex items-center space-x-4">
+            <FaEnvelope className="text-[#15A6FF] text-xl" />
+            <a href="mailto:ekramul.hoque.ridoy@gmail.com" className="text-lg text-blue-600 hover:underline">
+              ekramul.hoque.ridoy@gmail.com
+            </a>
+          </div>
+          <div className="flex items-center space-x-4">
+            <FaPhoneAlt className="text-[#15A6FF] text-xl" />
+            <p className="text-lg">+8801792243520 (Also on WhatsApp)</p>
+          </div>
+        </div>
+
+        
       </div>
 
-      {/* Toast Notifications Container */}
+      {/* Toast Notifications */}
       <Toaster position="bottom-right" />
     </div>
   );
