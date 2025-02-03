@@ -1,6 +1,6 @@
 # Portfolio - Md. Ekramul Hoque
 
-![Portfolio Banner](https://i.ibb.co.com/GPJrCz3/MD-EKRAMUL.png)
+**[Portfolio Banner](https://i.ibb.co.com/GPJrCz3/MD-EKRAMUL.png)**
 
 ## 🚀 Live Preview
 🔗 **[View Portfolio](https://md-ekramul-hoque.web.app/)**
