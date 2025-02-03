@@ -19,28 +19,6 @@ This is my personal portfolio website showcasing my **skills, projects, and expe
 - **Contact form** with email functionality
 - **Go to Top** button for better UX
 
-## 📂 Folder Structure
-```
-portfolio/
-│── public/
-│   ├── details.json  # Project details
-│── src/
-│   ├── components/   # Reusable components (Navbar, Footer, etc.)
-│   ├── pages/        # Main pages (Home, Projects, Contact, etc.)
-│   ├── assets/       # Images and icons
-│   ├── App.js        # Main app file
-│   ├── index.js      # Entry point
-│── .gitignore
-│── package.json
-│── README.md
-```
-
-## 📸 Screenshots
-### Home Page
-![Home Screenshot](https://your-image-url.com)
-
-### Projects Section
-![Projects Screenshot](https://your-image-url.com)
 
 ## 🔧 Installation & Setup
 To run the project locally, follow these steps:
