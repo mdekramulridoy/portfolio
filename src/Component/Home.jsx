@@ -43,7 +43,7 @@ const Home = () => {
         {/* Social Media Links with Icons */}
         <div className="mt-6 flex justify-center md:justify-start lg:justify-start space-x-6">
           <a
-            href="https://github.com/mdekramulridoy?tab=repositories"
+            href="https://github.com/mdekramulridoy"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#15A6FF] hover:text-blue-600 text-xl"
