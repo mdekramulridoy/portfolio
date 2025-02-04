@@ -38,7 +38,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar w-full bg-base-100 bg-opacity-90 backdrop-blur-lg fixed top-0 shadow-lg shadow-[#15a5ff20] z-50">
+    <div className="navbar w-full bg-base-100 bg-opacity-90 bg-[#ECF8FF] backdrop-blur-lg fixed top-0 shadow-lg shadow-[#15a5ff20] z-50">
       <div className="px-6 lg:mx-20 justify-between w-full">
         {/* Left */}
         <HashLink smooth to="#top" className="flex">

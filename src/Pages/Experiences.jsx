@@ -43,10 +43,10 @@ const InfiniteScroll = ({ skills }) => {
     <div className="overflow-hidden w-full relative py-4">
       <motion.div
         className="flex space-x-6"
-        animate={{ x: ["0%", "-100%"] }} // Move left infinitely
+        animate={{ x: ["-100%", "0%"] }}
         transition={{
           repeat: Infinity,
-          duration: 12, // Adjust speed
+          duration: 20, 
           ease: "linear",
         }}
       >
