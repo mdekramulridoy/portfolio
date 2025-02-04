@@ -17,6 +17,7 @@
     "emailjs-com": "^3.2.0",
     "express": "^4.21.2",
     "firebase": "^11.1.0",
+    "framer-motion": "^12.1.0",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.1",
     "match-sorter": "^8.0.0",
