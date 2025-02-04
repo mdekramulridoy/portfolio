@@ -11,7 +11,7 @@ const projects = [
   {
     id: 2,
     title: "Book Library",
-    image: "https://i.ibb.co.com/9mp5NtkM/Screenshot-2025-02-03-114742.png",
+    image: "https://i.ibb.co.com/9DMrYnc/Screenshot-2025-02-04-234519.png",
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const Project = () => {
           <img
             src={projects[activeIndex].image}
             alt="Center Project"
-            className="w-96 h-96 object-cover md:w-96 msd:h-[26rem] rounded-lg shadow-xl"
+            className="w-96 h-96 lg:w-[1080px] lg:h-[720px] object-cover md:w-96 msd:h-[26rem] rounded-lg shadow-xl"
           />
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
             <h2 className="text-xl font-bold text-black bg-white p-1 rounded-xl">{projects[activeIndex].title}</h2>
@@ -82,7 +82,7 @@ const Project = () => {
           <img
             src={projects[(activeIndex + 1) % projects.length].image}
             alt="Right Project"
-            className="w-64 h-64 rounded-lg border-2 border-green-500 shadow-lg"
+            className="w-64 h-64 rounded-lg border-2 border-green-500 shadow-lg object-cover"
           />
         </motion.div>
       </div>
