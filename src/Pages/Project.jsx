@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -21,8 +21,16 @@ const projects = [
 ];
 
 const Project = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % projects.length);
+    }, 3000); // Auto slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const nextProject = () => {
     setActiveIndex((prev) => (prev + 1) % projects.length);
@@ -33,57 +41,40 @@ const Project = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center px-4 mt-24">
-      <div className="relative flex w-full h-full object-cover items-center justify-center">
-        {/* Left Project (Inactive) */}
+    <div className="flex flex-col items-center justify-center px-4 mt-24 overflow-hidden w-full rounded-xl">
+      <div className="relative flex w-full h-full object-cover items-center justify-center rounded-xl">
+        {/* Projects Wrapper */}
         <motion.div
-          className="absolute left-0 scale-90 opacity-60 transition-all duration-500 hidden md:block"
-          initial={{ x: -100, opacity: 0.5 }}
-          animate={{ x: 0, opacity: 0.6 }}
-          transition={{ duration: 0.5 }}
+          className="flex w-full flex-col sm:flex-row justify-center items-center overflow-hidden rounded-xl"
+          initial={{ x: "100%" }}
+          animate={{ x: "0%" }}
+          transition={{ duration: 1, ease: "easeInOut" }}
         >
-          <img
-            src={projects[(activeIndex + projects.length - 1) % projects.length].image}
-            alt="Left Project"
-            className="w-64 h-64 rounded-lg border-2 border-green-500 shadow-lg object-cover"
-          />
-        </motion.div>
-
-        {/* Center Project (Active) */}
-        <motion.div
-          className="relative z-10 flex flex-col items-center scale-110"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <img
-            src={projects[activeIndex].image}
-            alt="Center Project"
-            className="w-96 h-96 lg:w-[1080px] lg:h-[720px] object-cover md:w-96 msd:h-[26rem] rounded-lg shadow-xl"
-          />
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
-            <h2 className="text-xl font-bold text-black bg-white p-1 rounded-xl">{projects[activeIndex].title}</h2>
-            <button
-              onClick={() => navigate(`/project/${projects[activeIndex].id}`)}
-              className="mt-2 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className={`relative z-10 flex flex-col items-center m-2 md:m-4 transition-all duration-1000 ease-in-out rounded-xl ${
+                index === activeIndex ? "scale-100 opacity-100" : "scale-90 opacity-60"
+              } hover:scale-105 hover:border hover:border-[#0083D5]  transition-transform rounded-xl`}
             >
-              View Details
-            </button>
-          </div>
-        </motion.div>
-
-        {/* Right Project (Inactive) */}
-        <motion.div
-          className="absolute right-0 scale-90 opacity-60 transition-all duration-500 hidden md:block"
-          initial={{ x: 100, opacity: 0.5 }}
-          animate={{ x: 0, opacity: 0.6 }}
-          transition={{ duration: 0.5 }}
-        >
-          <img
-            src={projects[(activeIndex + 1) % projects.length].image}
-            alt="Right Project"
-            className="w-64 h-64 rounded-lg border-2 border-green-500 shadow-lg object-cover"
-          />
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto object-cover rounded-lg shadow-xl"
+              />
+              <div className="text-center flex flex-col gap-5 sm:gap-20 justify-between my-6 sm:my-10">
+                <h2 className="text-sm sm:text-lg font-bold text-black">
+                  {project.title} ---&gt;
+                </h2>
+                <button
+                  onClick={() => navigate(`/project/${project.id}`)}
+                  className="text-sm sm:text-lg font-bold bg-[#0083D5] text-white hover:bg-blue-600 transition-all py-1 px-2 flex justify-center items-center rounded-xl"
+                >
+                  View Details
+                </button>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
 
@@ -91,13 +82,13 @@ const Project = () => {
       <div className="flex mt-6 space-x-4">
         <button
           onClick={prevProject}
-          className="px-6 py-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition-all"
+          className="px-4 sm:px-6 py-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition-all"
         >
           ◀
         </button>
         <button
           onClick={nextProject}
-          className="px-6 py-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition-all"
+          className="px-4 sm:px-6 py-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition-all"
         >
           ▶
         </button>
