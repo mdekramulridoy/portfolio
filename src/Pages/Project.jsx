@@ -64,7 +64,7 @@ const Project = () => {
               />
               <div className="text-center flex flex-col gap-5 sm:gap-20 justify-between my-6 sm:my-10">
                 <h2 className="text-sm sm:text-lg font-bold text-black">
-                  {project.title} ---&gt;
+                  {project.title}
                 </h2>
                 <button
                   onClick={() => navigate(`/project/${project.id}`)}
