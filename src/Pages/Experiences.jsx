@@ -54,7 +54,7 @@ const InfiniteScroll = ({ skills }) => {
         {[...skills, ...skills].map((skill, index) => (
           <div
             key={index}
-            className="bg-[#15A6FF] p-6 min-w-[180px] lg:min-w-[250px] rounded-lg shadow-lg text-white hover:shadow-2xl hover:shadow-[#15A6FF] transition duration-300 flex flex-col items-center"
+            className="bg-[#15A6FF] p-6 min-w-[180px] lg:min-w-[250px] rounded-lg shadow-lg text-white transition duration-300 flex flex-col items-center"
           >
             <div className="text-4xl mb-2">{skill.icon}</div>
             <h3 className="font-semibold text-xl">{skill.name}</h3>
